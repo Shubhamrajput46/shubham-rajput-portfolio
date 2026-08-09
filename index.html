@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shubham Rajput — Python & Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F4;
+    --paper-2:#F2EFE7;
+    --ink:#1B2A2E;
+    --ink-soft:#4A5A5C;
+    --line:#DEDACB;
+    --teal:#2F5D50;
+    --teal-deep:#1F3F37;
+    --gold:#9C6B30;
+    --white:#FFFFFF;
+    --radius:6px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.65;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--teal);color:var(--white);}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  img{max-width:100%;display:block;}
+
+  h1,h2,h3{font-family:'Fraunces',serif;color:var(--ink);}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,248,244,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;max-width:1120px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:0.01em;
+  }
+  .logo .dot{color:var(--gold);}
+  .nav-links{display:none;gap:34px;font-size:13.5px;letter-spacing:0.02em;color:var(--ink-soft);}
+  .nav-links a{position:relative;padding-bottom:3px;transition:color .2s;}
+  .nav-links a:hover{color:var(--teal-deep);}
+  @media(min-width:760px){.nav-links{display:flex;}}
+  .nav-cta{
+    border:1px solid var(--teal-deep);color:var(--teal-deep);
+    padding:9px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;
+    transition:all .2s;
+  }
+  .nav-cta:hover{background:var(--teal-deep);color:var(--white);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 96px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:center;}
+  @media(min-width:900px){.hero-grid{grid-template-columns:1.2fr 0.8fr;gap:64px;}}
+
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-size:12.5px;letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--teal-deep);font-weight:600;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);}
+
+  h1.name{
+    font-size:clamp(36px,5vw,54px);
+    font-weight:600;line-height:1.1;letter-spacing:-0.01em;
+  }
+  .role{
+    font-size:16px;color:var(--gold);margin-top:14px;font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .tagline{
+    max-width:540px;color:var(--ink-soft);font-size:15.5px;margin-top:20px;line-height:1.85;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 24px;border-radius:var(--radius);font-size:13.5px;font-weight:500;
+    letter-spacing:0.01em;transition:all .22s;
+  }
+  .btn-primary{background:var(--teal-deep);color:var(--white);}
+  .btn-primary:hover{background:var(--teal);transform:translateY(-1px);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--teal-deep);color:var(--teal-deep);}
+
+  .hero-meta{
+    display:flex;gap:28px;margin-top:44px;flex-wrap:wrap;
+  }
+  .hero-meta div{border-left:2px solid var(--gold);padding-left:12px;}
+  .hero-meta .num{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--teal-deep);}
+  .hero-meta .lbl{font-size:11.5px;color:var(--ink-soft);letter-spacing:0.03em;margin-top:2px;}
+
+  .photo-frame{
+    position:relative;
+    max-width:340px;margin:0 auto;
+  }
+  .photo-frame .ring{
+    position:absolute;inset:-14px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    z-index:0;
+  }
+  .photo-frame .img-box{
+    position:relative;z-index:1;
+    border-radius:8px;overflow:hidden;
+    box-shadow:0 24px 48px -18px rgba(27,42,46,0.28);
+  }
+  .photo-frame img{filter:grayscale(8%) contrast(1.02);}
+  .photo-label{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    background:linear-gradient(0deg, rgba(27,42,46,0.82), transparent);
+    padding:36px 20px 16px;
+  }
+  .photo-label .n{color:var(--white);font-family:'Fraunces',serif;font-size:16px;font-weight:600;}
+  .photo-label .t{color:#DDE3DF;font-size:11.5px;margin-top:2px;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:80px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;}
+  .sec-num{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--gold);letter-spacing:0.05em;}
+  .sec-title{font-size:29px;font-weight:600;letter-spacing:-0.01em;}
+  .sec-sub{color:var(--ink-soft);font-size:14px;margin-top:8px;max-width:600px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-body{display:grid;gap:44px;grid-template-columns:1fr;}
+  @media(min-width:800px){.about-body{grid-template-columns:1.35fr 1fr;}}
+  .about-text p{color:var(--ink);font-size:15.5px;line-height:1.9;margin-bottom:18px;max-width:60ch;}
+  .info-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:6px 26px;
+  }
+  .info-row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:13.5px;}
+  .info-row:last-child{border-bottom:none;}
+  .info-row .k{color:var(--ink-soft);}
+  .info-row .v{color:var(--ink);text-align:right;font-weight:500;}
+  .info-row .v.accent{color:var(--gold);}
+
+  /* ---------- EXPERIENCE / EDU timeline ---------- */
+  .timeline{position:relative;padding-left:32px;}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line);}
+  .t-item{position:relative;padding-bottom:40px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";position:absolute;left:-32px;top:5px;
+    width:11px;height:11px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--teal-deep);
+  }
+  .t-date{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--gold);letter-spacing:0.04em;margin-bottom:8px;}
+  .t-title{font-size:19px;font-weight:600;}
+  .t-org{font-size:13.5px;color:var(--ink-soft);margin-top:3px;margin-bottom:12px;}
+  .t-list{list-style:none;}
+  .t-list li{font-size:14px;color:var(--ink);padding-left:20px;position:relative;margin-bottom:9px;line-height:1.75;}
+  .t-list li::before{content:"—";position:absolute;left:0;color:var(--gold);}
+
+  /* ---------- PROJECTS ---------- */
+  .projects{display:grid;gap:24px;grid-template-columns:1fr;}
+  @media(min-width:800px){.projects{grid-template-columns:1fr 1fr;}}
+  .p-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .25s, transform .25s;
+  }
+  .p-card:hover{box-shadow:0 20px 40px -20px rgba(27,42,46,0.25);transform:translateY(-3px);}
+  .p-head{
+    padding:16px 24px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--paper-2);
+  }
+  .p-index{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);}
+  .p-type{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-soft);}
+  .p-body{padding:26px 24px;flex:1;display:flex;flex-direction:column;}
+  .p-title{font-size:20px;font-weight:600;margin-bottom:12px;}
+  .p-desc{font-size:14px;color:var(--ink-soft);line-height:1.8;margin-bottom:18px;flex:1;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{
+    font-size:11.5px;padding:5px 12px;border-radius:20px;
+    border:1px solid var(--line);color:var(--teal-deep);font-weight:500;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-box{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .skills-grid{display:grid;grid-template-columns:1fr;}
+  @media(min-width:700px){.skills-grid{grid-template-columns:1fr 1fr 1fr;}}
+  .skill-group{padding:26px 26px;border-bottom:1px solid var(--line);}
+  @media(min-width:700px){
+    .skill-group{border-right:1px solid var(--line);}
+    .skill-group:nth-child(3n){border-right:none;}
+  }
+  .skill-group h4{
+    font-size:12px;color:var(--gold);letter-spacing:0.05em;margin-bottom:14px;
+    font-weight:600;text-transform:uppercase;font-family:'Inter',sans-serif;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{
+    font-size:12.5px;padding:6px 12px;border-radius:4px;
+    background:var(--paper-2);color:var(--ink);border:1px solid var(--line);
+  }
+
+  /* ---------- ACHIEVEMENTS / CERT ---------- */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:22px;}
+  @media(min-width:800px){.grid-2{grid-template-columns:1fr 1fr;}}
+  .mini-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+  }
+  .mini-card h3{font-size:17px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+  .mini-card h3::before{content:"";width:7px;height:7px;background:var(--gold);border-radius:50%;}
+  .mini-list{list-style:none;}
+  .mini-list li{font-size:14px;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line);}
+  .mini-list li:last-child{border-bottom:none;}
+  .mini-list .cap{color:var(--ink-soft);font-size:12px;display:block;margin-top:4px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:90px 0 44px;text-align:center;border-top:1px solid var(--line);}
+  footer .sec-head{justify-content:center;}
+  .contact-lead{color:var(--ink-soft);font-size:15px;max-width:460px;margin:16px auto 38px;}
+  .contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
+  .foot-note{font-size:12px;color:var(--ink-soft);}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media(prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+  :focus-visible{outline:2px solid var(--teal-deep);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Shubham Rajput<span class="dot">.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="Shubham_Rajput_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+  </nav>
+</header>
+
+<main class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Python Developer · Indore, India</div>
+      <h1 class="name">Building software that digitizes real work.</h1>
+      <div class="role">Full-Stack Development · Django · AI/ML</div>
+      <p class="tagline">MCA student with a strong foundation in Python, data structures, and object-oriented development. I build practical, production-minded applications — from AI-assisted farm management platforms to automated recruitment tools.</p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-ghost" href="mailto:sr9960920@gmail.com">Get in Touch</a>
+      </div>
+
+      <div class="hero-meta">
+        <div><div class="num">702</div><div class="lbl">AIR, NIMCET<br>National Entrance Exam</div></div>
+        <div><div class="num">2</div><div class="lbl">Full-Stack &amp;<br>ML Projects Shipped</div></div>
+        <div><div class="num">2027</div><div class="lbl">MCA Graduation<br>University of Hyderabad</div></div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="photo-frame">
+        <div class="ring"></div>
+        <div class="img-box">
+          <img src="photo.webp" alt="Portrait of Shubham Rajput">
+          <div class="photo-label">
+            <div class="n">Shubham Rajput</div>
+            <div class="t">Python & Full-Stack Developer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">About</h2>
+    </div>
+    <div class="about-body">
+      <div class="about-text reveal">
+        <p>I'm a motivated, detail-oriented developer with a strong grounding in Python, data structures, and object-oriented programming. My work sits at the intersection of full-stack engineering and applied AI/ML — I like taking a real, unglamorous problem and building software around it that actually gets used.</p>
+        <p>That approach has shaped projects like an AI-powered attendance system, a full-stack smart farming platform with machine-learning crop recommendations, and an automated resume screening tool. I'm currently pursuing my MCA at the University of Hyderabad, having placed AIR 702 nationwide in NIMCET.</p>
+      </div>
+      <div class="info-card reveal">
+        <div class="info-row"><span class="k">Location</span><span class="v">Indore, Madhya Pradesh</span></div>
+        <div class="info-row"><span class="k">Education</span><span class="v">MCA, University of Hyderabad</span></div>
+        <div class="info-row"><span class="k">Entrance Rank</span><span class="v accent">AIR 702 · NIMCET</span></div>
+        <div class="info-row"><span class="k">Core Stack</span><span class="v">Python · Django · SQL</span></div>
+        <div class="info-row"><span class="k">Focus Area</span><span class="v">AI / ML Systems</span></div>
+        <div class="info-row"><span class="k">Email</span><span class="v">sr9960920@gmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Experience &amp; Education</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="t-item">
+        <div class="t-date">2025 — PRESENT</div>
+        <div class="t-title">Software Development / Python</div>
+        <div class="t-org">Fresher — building independently</div>
+        <ul class="t-list">
+          <li>Continuously improving software development and problem-solving skills through hands-on projects and coding practice.</li>
+          <li>Actively learning AI/ML concepts using Python frameworks.</li>
+        </ul>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2025 — 2027</div>
+        <div class="t-title">Master of Computer Applications (MCA)</div>
+        <div class="t-org">University of Hyderabad, India — Pursuing</div>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2021 — 2024</div>
+        <div class="t-title">Bachelor of Computer Applications (BCA)</div>
+        <div class="t-org">Dr. APJ Abdul Kalam University, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Selected Projects</h2>
+    </div>
+    <div class="projects">
+      <div class="p-card reveal">
+        <div class="p-head">
+          <span class="p-index">Project 01</span>
+          <span class="p-type">Full-Stack Web Application</span>
+        </div>
+        <div class="p-body">
+          <div class="p-title">AI Smart Farming Portal</div>
+          <p class="p-desc">A full-stack, AI-powered platform to digitize farm management — crop, land, expense, and farmer record tracking, with secure role-based access. Integrates machine-learning crop recommendation and fertilizer suggestions from real agricultural datasets, plus responsive dashboards with live weather and agri data.</p>
+          <div class="tags">
+            <span class="tag">Django</span><span class="tag">SQL</span><span class="tag">Machine Learning</span><span class="tag">REST APIs</span><span class="tag">Auth &amp; RBAC</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card reveal">
+        <div class="p-head">
+          <span class="p-index">Project 02</span>
+          <span class="p-type">Automation Tool</span>
+        </div>
+        <div class="p-body">
+          <div class="p-title">ATS Resume Screening System</div>
+          <p class="p-desc">An automated screening pipeline that extracts and parses text from PDF resumes, scores candidates against required technical skills, and exports ranked results — turning a manual shortlisting task into a repeatable script.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">PyPDF2</span><span class="tag">CSV Export</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Skills &amp; Tools</h2>
+    </div>
+    <div class="skills-box reveal">
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Languages</h4>
+          <div class="chip-row">
+            <span class="chip">Python</span><span class="chip">C++</span><span class="chip">Java</span><span class="chip">C</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Backend</h4>
+          <div class="chip-row">
+            <span class="chip">Django</span><span class="chip">FastAPI</span><span class="chip">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Frontend</h4>
+          <div class="chip-row">
+            <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span><span class="chip">UI/UX</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Database</h4>
+          <div class="chip-row">
+            <span class="chip">MySQL</span><span class="chip">Database Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>ML Libraries</h4>
+          <div class="chip-row">
+            <span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Basic ML</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Tooling</h4>
+          <div class="chip-row">
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">VS Code</span>
+          </div>
+        </div>
+        <div class="skill-group" style="border-right:none;">
+          <h4>Fundamentals</h4>
+          <div class="chip-row">
+            <span class="chip">DSA</span><span class="chip">OOP</span><span class="chip">DBMS</span><span class="chip">Operating Systems</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Certifications &amp; Achievements</h2>
+    </div>
+    <div class="grid-2">
+      <div class="mini-card reveal">
+        <h3>Certifications</h3>
+        <ul class="mini-list">
+          <li>Python Programming <span class="cap">Coding Seekho</span></li>
+          <li>Deloitte Technology Job Simulation <span class="cap">Forage</span></li>
+        </ul>
+      </div>
+      <div class="mini-card reveal">
+        <h3>Achievements</h3>
+        <ul class="mini-list">
+          <li>Secured AIR 702 in NIMCET <span class="cap">National Level MCA Entrance Examination</span></li>
+          <li>Completed Deloitte Technology Job Simulation <span class="cap">Practical exposure to software development &amp; problem-solving, via Forage</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">Let's work together</h2>
+    </div>
+    <p class="contact-lead">Open to Python, full-stack, and AI/ML roles and collaborations. I usually reply within a day.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:sr9960920@gmail.com">sr9960920@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+916264411877">+91 6264411877</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/shubham-rajput-a9165633" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/Shubhamrajput46" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="foot-note">© 2026 Shubham Rajput. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.15});
+  items.forEach(i=>io.observe(i));
+</script>
+
+</body>
+</html>
