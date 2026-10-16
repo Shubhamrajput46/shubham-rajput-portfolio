@@ -1,32 +1,3 @@
-# Shubham Rajput - Portfolio
+# shubham_rajput-portfolio
 
-Personal portfolio website showcasing my skills, projects,
-experience, and technical journey.
-
-## Tech Stack
-
-- HTML5
-- CSS3
-- JavaScript
-- Python
-- Django
-- REST API
-
-## Featured Projects
-
-- AI Smart Farming Portal
-- Image Pixel Manipulation
-- Snake Game
-
-## Features
-
-- Responsive Design
-- Modern UI
-- Projects Showcase
-- Skills Section
-- Contact Section
-- Resume Download
-
-## Author
-
-Shubham Rajput
+Live: https://shubhamrajput46.github.io/shubham-rajput-portfolio/
